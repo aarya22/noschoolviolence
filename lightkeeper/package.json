@@ -10,6 +10,7 @@
   "author": "Jeremy Foster <jeremy.foster@live.com> (http://codefoster.com)",
   "license": "Apache 2.0",
   "dependencies": {
-    "botbuilder": "^4.0.0-preview1.2"
+    "botbuilder": "^4.0.0-preview1.2",
+    "botbuilder-topical": "^0.12.1"
   }
 }

@@ -1,7 +1,10 @@
-import { ConsoleAdapter } from "botbuilder";
+import { ConsoleAdapter, MemoryStorage } from "botbuilder";
+import { Topic, doTopic, consoleOnTurn, prettyConsole } from "botbuilder-topical";
+import { Root } from "./topics";
 
-new ConsoleAdapter().listen(ctx => {
-    
-    if (ctx.activity.type === 'message') 
-        ctx.sendActivity(`hi, I'm lightkeeper`);
-})
+Topic.init(new MemoryStorage());
+
+const adapter = new ConsoleAdapter()
+    .use(prettyConsole);
+
+consoleOnTurn(adapter, context => doTopic(Root, context));
