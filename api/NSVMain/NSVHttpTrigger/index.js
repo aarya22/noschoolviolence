@@ -2,15 +2,16 @@ const controller = require('./util/controller.js')
 
 module.exports = function (context, req) {
 
-    var control = context.bindingData.controller;
-    var method  = context.bindingData.method;
-    var id      = context.bindingData.id;
+    var control     = context.bindingData.controller;
+    var controlid   = context.bindingData.controllerid;
+    var method      = context.bindingData.method;
+    var methodid    = context.bindingData.methodid;
 
-    controller.Route(context, method, id);
+    controller.Route(context, control, controlid, method, methodid);
 
     context.res = {
         // status: 200, /* Defaults to 200 */
-        body: `controller=${control} method=${method} id=${id}`
+        body: `controller=${control} controllerid=${controlid} method=${method} methodid=${methodid}`
     };
 
     context.done();
