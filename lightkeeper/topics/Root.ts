@@ -4,7 +4,7 @@ import { RecordConcern } from ".";
 export class Root extends Topic {
 
     async onStart() {
-        await this.send("Would you like to record a concern or inquire about concerns?");
+        await this.send("Would you like to record a concern or inquire about insights?");
     }
 
     async onDispatch() {
