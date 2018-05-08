@@ -1,18 +1,18 @@
 import { Topic } from "botbuilder-topical";
-import { RecordBehavior } from ".";
+import { RecordConcern } from ".";
 
 export class Root extends Topic {
 
     async onStart() {
-        await this.send("Would you like to record a behavior observation or inquire about concerns?");
+        await this.send("Would you like to record a concern or inquire about concerns?");
     }
 
     async onDispatch() {
         if (await this.dispatchToChild())
             return;
 
-        if (this.text === "record behavior") {
-            await this.startChild(RecordBehavior);
+        if (this.text === "record concern") {
+            await this.startChild(RecordConcern);
         }
     }
 
