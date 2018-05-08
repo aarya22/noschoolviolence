@@ -1,0 +1,17 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "name": "req",
+      "direction": "in",
+      "methods": [ "get" ],
+      "route": "nsv/{controller:alpha}/{method:alpha}/{id:int?}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    }
+  ]
+}
