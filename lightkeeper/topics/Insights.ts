@@ -3,7 +3,7 @@ import { fetch } from "node-fetch";
 
 export class Insights extends Topic {
     async onStart(concernSet) {
-        const baseURL = ;
+        const baseURL = 'http://localhost:1337/insights';
         fetch (baseURL, {
             method: 'GET',
             body: JSON.stringify(body),
