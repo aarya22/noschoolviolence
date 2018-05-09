@@ -7,7 +7,9 @@ module.exports = function (context, req) {
     var method      = context.bindingData.method;
     var methodid    = context.bindingData.methodid;
 
-    controller.Route(context, control, controlid, method, methodid);
+    var retval = controller.Route(context, control, controlid, method, methodid);
+
+    context.log(`retval = ${retval}`)
 
     context.res = {
         // status: 200, /* Defaults to 200 */
