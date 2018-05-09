@@ -1,7 +1,7 @@
 import { Topic } from "botbuilder-topical";
 import { RecordConcern } from ".";
 import { Help } from ".";
-// import { Insights } from ".";
+import { Insights } from ".";
 
 export class Root extends Topic {
 
@@ -11,27 +11,28 @@ export class Root extends Topic {
     }
 
     async onDispatch() {
+        // needed to prevent events from triggering user-targeted output. 
         if (this.context.activity.type !== 'message') {
             return;
+        } else {
+            if (this.context.activity.text === "yes"){
+                await this.startChild(RecordConcern);
+            } else if (this.context.activity.text === "no") {
+                this.send("Great! there are a few other things I can help you with.");
+                await this.startChild(Help);
+            }
+            await this.dispatchToChild;
         }
-        if (this.context.activity.text === "yes"){
-
-            await this.startChild(RecordConcern);
-        } else if (this.context.activity.text === "no") {
-            this.send("Great! there are a few other things I can help you with.");
-            await this.startChild(Help);
-        }
-        await this.dispatchToChild;
     }
 
-    async onChildEnd(child: Help) {
-        this.send(`You are back in root.`);
-        this.onStart();
-    }
-    
-    async onChildEnd(child: RecordConcern) {
-//        await this.startChild(Insights);
-        this.onStart();
+    async onChildEnd(child: Topic) {
+        if (child instanceof Help) {
+            this.onStart();
+        } else if (child instanceof RecordConcern) {
+            await this.startChild(Insights);
+        } else {
+            this.onStart();
+        }
     }
     
 }
