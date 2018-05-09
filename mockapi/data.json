@@ -1,19 +1,30 @@
 {
-    "caseIdByNum": {
-        "1": "101",
-        "2": "102",
-        "3": "103",
-        "4": "104"
-    },
     "cases": [
-        {"101": "body"},
-        {"102": "body"},
-        {"103": "body"},
-        {"104": "body"}
-    ],
-    "insights":{
-        "101": ["insight 1","insight 2","insight 3"],
-        "102": ["insight 1","insight 2","insight 3"],
-        "103": ["insight 1","insight 2","insight 3"]
-    }
+        {
+            "id": 1,
+            "concerns": [
+                "concern 1",
+                "concern 2",
+                "concern 3"
+            ],
+            "insights": [
+                "insight 1",
+                "insight 2",
+                "insight 3"
+            ]
+        },
+        {
+            "id": 2,
+            "concerns": [
+                "concern 1",
+                "concern 2",
+                "concern 3"
+            ],
+            "insights": [
+                "insight 1",
+                "insight 2",
+                "insight 3"
+            ]
+        }
+    ]
 }
