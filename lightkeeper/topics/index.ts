@@ -1,3 +1,3 @@
 export { Root } from './Root';
 export { RecordConcern } from './RecordConcern';
-export { Insights } from './Insights';
+//export { Insights } from './Insights';

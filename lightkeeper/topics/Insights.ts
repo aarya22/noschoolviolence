@@ -1,15 +1,15 @@
 import { Topic } from "botbuilder-topical";
-import { fetch } from "node-fetch";
+import  asfetch from "node-fetch";
 
-export class Insights extends Topic {
-    async onStart(concernSet) {
-        const cs = [consernSet];
+/* export class Insights extends Topic {
+    async onStart(concernSet: any) {
+        const cs = [concernSet];
         const baseURL = 'http://localhost:1337/insights';
         fetch (baseURL, {
             method: 'GET',
             body: JSON.stringify(body),
             headers: {'Content-Type' : 'application/JSON'},
-        }).then( res => {
+        }).then( value : Response) => {
             const resArr = [res];
             // for (concern of cs){
             //     for(re of resArr){
@@ -64,6 +64,7 @@ export class Insights extends Topic {
         console.log(finalConcernSet);
     }
 
-}
+} 
 
 Insights.register();
+**/

@@ -1,15 +1,23 @@
 import { Topic } from "botbuilder-topical";
 import { RecordConcern } from ".";
-import { Insights } from ".";
+//import { Insights } from ".";
 
 export class Root extends Topic {
 
     async onStart() {
         await this.send("Hi, I'm Lightkeeper, and I'm here to help you help a child. Would you like to profile a student?");
+        
     }
 
     async onDispatch() {
-        var input: string = `${this.text}`;
+        /**if (await this.dispatchToChild){
+            return;
+        }**/
+        if (this.context.activity.text === "yes"){
+            await this.send("Please add all your concerns below, each separated by a comma.")
+        }
+        
+       /*  var input: string = `${this.text}`;
         if (await this.dispatchToChild()) {
             return;
         } else if (this.endBehaviorEntry(input) == true) {
@@ -23,7 +31,7 @@ export class Root extends Topic {
                 this.send("That behavior isn't part of our standard set of problematic behaviors, but I will add it to the list.");
                 await this.startChild(RecordConcern);
             }
-        }
+        } */
     }
 
     async onChildEnd() {
