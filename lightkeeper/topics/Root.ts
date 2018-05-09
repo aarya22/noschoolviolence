@@ -1,5 +1,6 @@
 import { Topic } from "botbuilder-topical";
 import { RecordConcern } from ".";
+import { Insights } from ".";
 
 export class Root extends Topic {
 
