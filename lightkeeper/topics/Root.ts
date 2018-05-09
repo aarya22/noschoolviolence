@@ -8,10 +8,12 @@ export class Root extends Topic {
     }
 
     async onDispatch() {
+        var input: string = `${this.text}`;
         if (await this.dispatchToChild()) {
             return;
+        } else if (this.endBehaviorEntry(input) == true) {
+            await this.send("It looks like you are done adding traits for this student -- thanks!");
         } else {
-            var input: string = `${this.text}`;
             this.send(`You entered ${input}`);
             if (this.findBehaviors(input) == true) {
                 this.send("Great! I'm adding this behavior to your list.");
@@ -24,7 +26,7 @@ export class Root extends Topic {
     }
 
     async onChildEnd() {
-        await this.send(`Welcome back to the Root!`);
+        await this.send(`Please add another concern, or let me know if you are finished.`);
     }
     
     findBehaviors(input: string) {
@@ -37,8 +39,19 @@ export class Root extends Topic {
         }
         return false;
     }
+    
+    endBehaviorEntry(input: string) {
+        var i;
+        for (i = 0; i < doneWithBehaviorEntry.length; i++) {
+            if (input.includes(doneWithBehaviorEntry[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 Root.register();
 
 var behaviors = ["bully", "bullying", "violent", "violence", "abuse", "sad", "depressed", "bad grades", "undereating"];
+var doneWithBehaviorEntry = ["done", "finished", "move on", "stop", "end"];
