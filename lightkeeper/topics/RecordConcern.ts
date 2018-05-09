@@ -2,11 +2,12 @@ import { Topic } from "botbuilder-topical";
 
 export class RecordConcern extends Topic {
     async onStart() {
-        await this.send("The concerning behavior has been added to my profile for this session. Feel free to keep adding concerns.");
-        this.end();
+        await this.send("Please add all your concerns below, each separated by a comma");
+        if (await )
     }
 
     async onDispatch() {
+        
     }
 
     async onChildEnd() {
