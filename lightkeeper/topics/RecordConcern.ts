@@ -56,8 +56,5 @@ export class RecordConcern extends Topic {
 
 RecordConcern.register();
 
-var behaviors = ["bullying", "violent", "depressed", "sad", "angry"]
-var doneWithBehaviorEntry = ["all done", "done", "end", "stop"]
-
 var behaviors = ["bully", "bullying", "violent", "violence", "abuse", "sad", "depressed", "bad grades", "undereating"];
 var doneWithBehaviorEntry = ["done", "finished", "move on", "stop", "end"];
