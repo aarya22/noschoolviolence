@@ -4,6 +4,15 @@ const dto   = require('./dto.js')
 // TODO: Replace MOCK objects with real objects
 const fakes = require('./fakes.js')
 
+const routeMap = {
+    'case' : {
+        'undefined' : 'GetAllCases',
+    },
+    'row2' : {
+        'key3' : 'input3',
+        'key4' : 'input4'
+    }
+}
 module.exports =
 {
     Route: function(context, control, controlid, method, methodid)
@@ -11,7 +20,7 @@ module.exports =
         context.log(`Route called controller=${control} controllerid=${controlid} method=${method} methodid=${methodid}`)
         
         // TODO: hard code for now.  need to determine proper method to call based on controller
-        var name = 'GetAllCases'
+        var name = routeMap[control][method]
 
         return this[name](context, arguments) 
     },
