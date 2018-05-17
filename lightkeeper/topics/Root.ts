@@ -1,6 +1,6 @@
 import { Topic } from "botbuilder-topical";
 import { RecordConcern } from ".";
-//import { Insights } from ".";
+
 
 export class Root extends Topic {
 
@@ -53,7 +53,31 @@ export class Root extends Topic {
     async onChildEnd(){
         await this.send("Thank you");
         this.end();
+        // needed to prevent events from triggering user-targeted output. 
+        /*if (this.context.activity.type !== 'message') {
+            return;
+        } else {
+            if (this.context.activity.text === "yes"){
+                await this.startChild(RecordConcern);
+            } else if (this.context.activity.text === "no") {
+                this.send("Great! there are a few other things I can help you with.");
+                await this.startChild(Help);
+            }
+            await this.dispatchToChild;
+        }*/
     }
+
+    /*
+    async onChildEnd(child: Topic) {
+        if (child instanceof Help) {
+            this.onStart();
+        } else if (child instanceof RecordConcern) {
+            await this.startChild(Insights);
+        } else {
+            this.onStart();
+        }
+    }
+    */
 
   
 
@@ -61,8 +85,6 @@ export class Root extends Topic {
         await this.send(`Please add another concern, or let me know if you are finished.`);
     } */
     
-
-
 }
 
 Root.register();
