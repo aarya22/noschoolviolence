@@ -10,20 +10,22 @@ export class Root extends Topic {
     }
 
     async onDispatch() {
-        /**if (await this.dispatchToChild){
+        
+        
+        /**if (!this.text || this.context.activity.text === "No"){
             return;
         }**/
+        if (await this.dispatchToChild())
+            return;
+        if (this.text){    
+            if (this.text === "Yes"){
+
+                await this.startChild(RecordConcern);
+            } else {
+                await this.send("Thank you!");
+            }
+        }
         
-        if (!this.text || this.context.activity.text === "No"){
-            return;
-        }
-        if (await this.dispatchToChild){
-            return;
-        }
-        if (this.context.activity.text === "Yes"){
-            await this.startChild(RecordConcern);
-            return;
-        }
         
 
 
@@ -44,37 +46,23 @@ export class Root extends Topic {
             }
         } 
         **/
+
     }
 
-    async onChildEnd() {
+
+    async onChildEnd(){
+        await this.send("Thank you");
+        this.end();
+    }
+
+  
+
+    /* async onChildEnd() {
         await this.send(`Please add another concern, or let me know if you are finished.`);
-    }
+    } */
     
-    findBehaviors(input: string) {
-        var i;
-        this.send(`Checking our index of ${behaviors.length - 1} behaviors`);
-        for (i = 0; i < behaviors.length; i++) {
-            if (input.includes(behaviors[i])) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    endBehaviorEntry(input: string) {
-        var i;
-        for (i = 0; i < doneWithBehaviorEntry.length; i++) {
-            if (input.includes(doneWithBehaviorEntry[i])) {
-                return true;
-            }
-        }
-        return false;
-    }
 
 
 }
 
 Root.register();
-
-var behaviors = ["bully", "bullying", "violent", "violence", "abuse", "sad", "depressed", "bad grades", "undereating"];
-var doneWithBehaviorEntry = ["done", "finished", "move on", "stop", "end"];
